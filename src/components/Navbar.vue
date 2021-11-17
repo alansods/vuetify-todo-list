@@ -1,54 +1,60 @@
 <template>
-  <nav>
-    <v-app-bar app flat>
-      <v-app-bar-nav-icon class="grey--text" @click="drawer = !drawer"></v-app-bar-nav-icon>
+  <v-card>
+    <v-navigation-drawer
+      v-model="drawer"
+      :mini-variant.sync="mini"
+      permanent
+    >
+      <v-list-item class="px-2">
+        <v-list-item-avatar>
+          <v-img src="https://randomuser.me/api/portraits/men/85.jpg"></v-img>
+        </v-list-item-avatar>
 
-      <router-link style="text-decoration: none; color: inherit;" to="/">
-      <v-toolbar-title class="text-uppercase grey--text" @click="drawer = false">
-        <span class="font-weight-light">Todo</span>
-        <span>Ninja</span>
-      </v-toolbar-title>
-      </router-link>
-      
-      <v-spacer></v-spacer>
-      <v-btn text color="grey">
-        <span>Sign Out</span>
-        <v-icon right>mdi-exit-to-app</v-icon>
-      </v-btn>
-    </v-app-bar>
+        <v-list-item-title>John Leider</v-list-item-title>
 
-    <v-navigation-drawer app class="indigo" v-model="drawer">
-      <v-list>
-        <v-list-item v-for="link in links" :key="link.text" router :to="link.route" @click="drawer = false">
-          <v-list-item-action>
-            <v-icon class="white--text">{{ link.icon }}</v-icon>
-          </v-list-item-action>
+        <v-btn
+          icon
+          @click.stop="mini = !mini"
+        >
+          <v-icon>mdi-chevron-left</v-icon>
+        </v-btn>
+      </v-list-item>
+
+      <v-divider></v-divider>
+
+      <v-list dense>
+        <v-list-item
+          v-for="item in items"
+          :key="item.title"
+          link
+        >
+          <v-list-item-icon>
+            <v-icon>{{ item.icon }}</v-icon>
+          </v-list-item-icon>
+
           <v-list-item-content>
-            <v-list-item-title class="white--text">{{ link.text }}</v-list-item-title>
+            <v-list-item-title>{{ item.title }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-  </nav>
+  </v-card>
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      drawer: false,
-      links: [
-        { icon: 'mdi-view-dashboard', text: 'Dashboard', route: '/Dashboard' },
-        { icon: 'mdi-folder', text: 'My Projects', route: '/Projects' },
-        { icon: 'mdi-account', text: 'Team', route: '/Team' },
-      ]
-    }
-  },
-
-  methods: {
-
+  export default {
+    data () {
+      return {
+        drawer: true,
+        items: [
+          { title: 'Home', icon: 'mdi-home-city' },
+          { title: 'My Account', icon: 'mdi-account' },
+          { title: 'Users', icon: 'mdi-account-group-outline' },
+        ],
+        mini: true,
+      }
     },
-}
+  }
 </script>
 
 <style>

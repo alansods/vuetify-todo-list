@@ -1,7 +1,5 @@
 <template>
   <div class="dashboard">
-    
-
     <v-container class="my-5">
       <h1 class="subheading grey--text mb-6">Dashboard</h1>
       <v-card flat class="pa-10">
