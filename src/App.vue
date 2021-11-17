@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-main class="grey lighten-3">
+    <v-main>
       <router-view></router-view>
     </v-main>
   </v-app>
@@ -13,6 +13,6 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 
 </style>

@@ -1,154 +1,180 @@
 <template>
   <section class="section-container">
     <v-row class="signin">
-      <v-col cols="8" class="left">
-        <h1>Welcome to my site</h1>
+      <v-col cols="4" class="left">
+        <v-img
+          max-height="180"
+          max-width="329"
+          src="@/assets/logo.svg"
+        ></v-img>
       </v-col>
-      <v-col cols="4" class="right">
-        <h2>LOGIN</h2>
-        <validation-observer ref="observer">
-          <v-form @submit.prevent="submit">
-            <validation-provider
-              v-slot="{ errors }"
-              name="Name"
-              rules="required|email"
-            >
-              <v-text-field
-                v-model="email"
-                :error-messages="errors"
-                label="Email"
-                required
-                outlined
-                dark
-                filled
-                dense
-              ></v-text-field>
-            </validation-provider>
-            <validation-provider
-              v-slot="{ errors }"
-              name="email"
-              rules="required"
-            >
-              <v-text-field
-                v-model="password"
-                :error-messages="errors"
-                label="Password"
-                :append-icon="showPass ? 'mdi-eye' : 'mdi-eye-off'"
-                @click:append="showPass = !showPass"
-                required
-                outlined
-                dense
-                dark
-                filled
-                :type="showPass ? 'text' : 'password'"
-              ></v-text-field>
-            </validation-provider>
-            <div class="text-center">
-              <v-btn
-                class="signin-btn"
-                type="submit"
-                rounded
-                color="white"
-                dark
+      <v-col cols="8" class="right">
+        <div class="container-form">
+          <h2>Entre com seus dados de acesso.</h2>
+          <validation-observer ref="observer">
+            <v-form @submit.prevent="submit">
+              <validation-provider
+                v-slot="{ errors }"
+                name="Usuário"
+                rules="required|email"
               >
-                Sign In
-              </v-btn>
-            </div>
-          </v-form>
-        </validation-observer>
+                <label>Nome de usuário ou e-mail:</label>
+                <v-text-field
+                  v-model="email"
+                  :error-messages="errors"
+                  required
+                  outlined color="blue"
+                  light
+                  dense
+                ></v-text-field>
+              </validation-provider>
+              <validation-provider
+                v-slot="{ errors }"
+                name="E-mail"
+                rules="required"
+              >
+                <label>Senha:</label>
+                <v-text-field style="border: 5px"
+                  v-model="password"
+                  :error-messages="errors"
+                  :append-icon="showPass ? 'mdi-eye' : 'mdi-eye-off'"
+                  @click:append="showPass = !showPass"
+                  required
+                  outlined color="blue"
+                  dense
+                  light
+                  :type="showPass ? 'text' : 'password'"
+                ></v-text-field>
+              </validation-provider>
+              <v-btn class="signin-btn" type="submit" depressed> Entrar </v-btn>
+              <div class="forgot-password">Esqueci minha senha</div>
+            </v-form>
+          </validation-observer>
+        </div>
       </v-col>
     </v-row>
   </section>
 </template>
 
 <script>
+import { required, email } from "vee-validate/dist/rules";
+import {
+  extend,
+  ValidationProvider,
+  setInteractionMode,
+  ValidationObserver,
+} from "vee-validate";
 
-import { required, email } from 'vee-validate/dist/rules'
-import { extend, ValidationProvider, setInteractionMode, ValidationObserver } from 'vee-validate'
+setInteractionMode("eager");
 
-setInteractionMode('eager')
-
-extend('required', {
+extend("required", {
   ...required,
-  message: '{_field_} can not be empty'
-})
+  message: "{_field_} não pode ficar vazio.",
+});
 
-extend('email', {
+extend("email", {
   ...email,
-  message: 'Email must be valid'
-})
+  message: "Digite um e-mail válido.",
+});
 
 export default {
   components: {
     ValidationProvider,
-    ValidationObserver
+    ValidationObserver,
   },
   data: () => ({
-    email: '',
+    email: "",
     password: null,
-    showPass: false
+    showPass: false,
   }),
   computed: {
     params() {
       return {
         email: this.email,
-        password: this.password
-      }
-    }
+        password: this.password,
+      };
+    },
   },
   methods: {
     async submit() {
-      const valid = await this.$refs.observer.validate()
+      const valid = await this.$refs.observer.validate();
       if (valid) {
-        this.login(this.params) // action to login
+        this.login(this.params); // action to login
       }
     },
     clear() {
       // you can use this method to clear login form
-      this.email = ''
-      this.password = null
-      this.$refs.observer.reset()
-    }
-  }
-}
-
+      this.email = "";
+      this.password = null;
+      this.$refs.observer.reset();
+    },
+  },
+};
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .section-container {
-  padding: 20px;
-  margin: 20px;
+  font-family: 'Gilroy-Regular', sans-serif;
   background: #fff;
-  width: 100%;
-  box-shadow: 0 0 1px 1px rgba($color: #000000, $alpha: 0.1);
+  width: 100vw;
+  height: 100vh;
   box-sizing: border-box;
+  .container-form {
+    width: 300px;
+  }
   .signin {
+    width: 100vw;
+    height: 100vh;
     padding: 0;
-    max-width: 1000px;
-    margin: 0 auto;
-    min-height: 600px;
-    box-shadow: 0 0 1px 1px rgba($color: #000000, $alpha: 0.1);
+    margin: 0;
     .left {
-      padding: 30px;
+      padding: 10px;
       justify-content: center;
       align-items: center;
       box-sizing: border-box;
       display: flex;
-      color: #30ac7c;
-      background-color: #f9f9f9;
+      color: #fff;
+      background-color: #2693ff;
     }
     .right {
-      padding: 30px;
+      padding: 10px;
+      justify-content: center;
+      align-items: center;
       box-sizing: border-box;
-      background: #30ac7c;
-      color: #fff;
+      display: flex;
+      background: #fff;
+      color: #2d3d4d;
       h2 {
-        text-align: center;
+        text-align: left;
         margin: 30px 0;
+        font-size: 18px;
+        font-family: 'Gilroy-Bold', sans-serif;
       }
       .signin-btn {
         width: 100%;
-        color: #30ac7c;
+        color: #fff;
+        background-color: #1ad18f;
+        padding: 22px 12px;
+        font-size: 16px;
+        text-transform: none;
+        font-family: 'Gilroy-Bold', sans-serif;
+        font-kerning: auto;
+      }
+      input {
+        padding: 22px 12px;
+        border: #bfdaeb;
+      }
+      .forgot-password {
+        font-size: 13px;
+        color: #2693ff;
+        text-decoration: underline;
+        margin-top: 25px;
+        font-family: 'Gilroy-Medium', sans-serif;
+      }
+      label {
+        font-size: 14px;
+        color: #2d3d4d;
+        font-family: 'Gilroy-Medium', sans-serif;
       }
     }
   }
