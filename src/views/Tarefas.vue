@@ -108,6 +108,9 @@ export default {
       let task = this.tasks.filter((task) => task.id === id)[0];
       task.done = !task.done;
     },
+    deleteTask(id) {
+      this.tasks = this.tasks.filter(task => task.id !== id);
+    },
   },
 };
 </script>
