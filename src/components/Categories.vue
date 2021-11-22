@@ -34,10 +34,10 @@ export default {
 
 ul,
 li {
+  font-family: "Gilroy-Bold", sans-serif;
   list-style: none;
   padding: 0;
-  font-weight: bold;
   font-size: 15px;
-  margin: 7px 0;
+  margin: 12px 0;
 }
 </style>

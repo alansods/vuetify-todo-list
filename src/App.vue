@@ -13,8 +13,12 @@ export default {
 </script>
 
 <style lang="scss">
-body {
+body, p, h2, h3, li {
   font-family: "Gilroy-Regular", sans-serif;
   color: #2d3d4d;
+}
+
+h2, h3 {
+  font-family: "Gilroy-Semibold", sans-serif;
 }
 </style>

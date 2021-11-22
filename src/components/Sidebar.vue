@@ -23,45 +23,43 @@
 .logo {
   position: absolute;
   top: 14px;
-  left: 43px;
+  left: 33px;
 }
 
 .sidebar {
   height: 100vh;
   background: #2693ff;
-}
-
-.sidebar-items {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  height: 100%;
-}
-
-ul {
-  list-style: none;
-  padding: 0;
-  font-size: 12px;
-  font-weight: bold;
-  width: 100%;
-}
-
-li {
-  padding: 10px 0;
-  border: solid 1px #fff;
+  .sidebar-items {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+    ul {
+      list-style: none;
+      padding: 0;
+      font-size: 12px;
+      width: 100%;
+      li {
+        padding: 10px 0;
+        border: solid 1px #fff;
+        color: #fff;
+        font-family: "Gilroy-Semibold", sans-serif;
+      }
+    }
+  }
 }
 
 ul,
 i {
-  color: #fff;
   display: block;
   text-align: center;
   width: 100%;
 }
 
 i {
+  color: #fff;
   font-size: 2rem;
 }
 </style>
