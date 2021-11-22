@@ -53,11 +53,11 @@
             </template>
 
             <v-list>
-              <v-list-item
-                v-for="(item, i) in items"
-                :key="i"
-              >
-                <v-list-item-title>{{ item.title }}</v-list-item-title>
+              <v-list-item>
+                <v-list-item-title>Editar</v-list-item-title>
+              </v-list-item>
+              <v-list-item @click="deleteTask(task.id)">
+                <v-list-item-title>Excluir</v-list-item-title>
               </v-list-item>
             </v-list>
           </v-menu>
@@ -99,17 +99,16 @@ export default {
           done: false,
         },
       ],
-      items: [
-        { title: "Editar" },
-        { title: "Excluir" },
-      ],
     };
   },
   methods: {
     doneTask(id) {
-      let task = this.tasks.filter((task) => task.id === id)[0];
+      let task = this.tasks.filter(task => task.id === id)[0];
       task.done = !task.done;
     },
+    deleteTask(id) {
+      this.tasks = this.tasks.filter(task => task.id !== id);
+    }
   },
 };
 </script>
