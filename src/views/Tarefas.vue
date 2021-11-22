@@ -1,14 +1,13 @@
 <template>
-  <div
-    id="tarefas"
-  >
+  <div id="tarefas">
+    <TopBar></TopBar>
     <v-container fluid class="fill-height pa-0">
       <v-row class="fill-height">
-        <v-col cols="1" class="pa-0">
-            <Sidebar></Sidebar>
+        <v-col style="z-index: 4" cols="1" class="pa-0">
+          <Sidebar></Sidebar>
         </v-col>
         <v-col cols="2" class="pa-0">
-            <Categories></Categories>
+          <Categories></Categories>
         </v-col>
         <v-col cols="9" class="pa-0">
           <MyTasks></MyTasks>
@@ -23,6 +22,7 @@ import Navbar from "../components/Sidebar.vue";
 import Categories from "../components/Categories.vue";
 import Sidebar from "../components/Sidebar.vue";
 import MyTasks from "../components/tarefas/MyTasks.vue";
+import TopBar from "../components/tarefas/TopBar.vue";
 
 export default {
   name: "Tarefas",
@@ -31,15 +31,14 @@ export default {
     Categories,
     Sidebar,
     MyTasks,
+    TopBar,
   },
 };
 </script>
 
 <style>
-
 #tarefas {
   height: 100vh;
-  background: #E9F4FB;
+  background: #e9f4fb;
 }
-
 </style>
