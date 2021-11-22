@@ -1,7 +1,7 @@
 <template>
   <div class="categorias" max-width="300">
     <div>
-      <h3 class="mb-5">Categorias</h3>
+      <h3 class="mb-10">Categorias</h3>
       <ul v-for="(item, i) in items" :key="i">
         <li><v-icon>mdi-chevron-right</v-icon>{{ item.text }}</li>
       </ul>
@@ -25,10 +25,14 @@ export default {
 
 <style lang="scss" scoped>
 .categorias {
+  height: 100%;
+  position: fixed;
+  width: 200px;
+  left: 100px;
+  top: 0px;
+  padding: 0 35px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  height: 100vh;
   background: #f4fbff;
 }
 
@@ -38,6 +42,6 @@ li {
   list-style: none;
   padding: 0;
   font-size: 15px;
-  margin: 12px 0;
+  margin: 14px 0;
 }
 </style>

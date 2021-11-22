@@ -37,8 +37,12 @@ export default {
 </script>
 
 <style>
+body {
+  background: #e9f4fb;
+}
+
 #tarefas {
-  height: 100vh;
+  height: 100%;
   background: #e9f4fb;
 }
 </style>

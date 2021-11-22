@@ -2,54 +2,28 @@
   <section class="section-container">
     <v-row class="signin">
       <v-col cols="4" class="left pa-0">
-        <v-img
-          max-height="180"
-          max-width="329"
-          src="@/assets/logo.svg"
-        ></v-img>
+        <v-img max-height="180" max-width="329" src="@/assets/logo.svg"></v-img>
       </v-col>
       <v-col cols="8" class="right pa-0">
         <div class="container-form">
           <h2>Entre com seus dados de acesso.</h2>
-          <validation-observer ref="observer">
-            <v-form @submit.prevent="submit">
-              <validation-provider
-                v-slot="{ errors }"
-                name="Usuário"
-                rules="required|email"
-              >
-                <label>Nome de usuário ou e-mail:</label>
-                <v-text-field
-                  v-model="email"
-                  :error-messages="errors"
-                  required
-                  outlined color="blue"
-                  light
-                  dense
-                ></v-text-field>
-              </validation-provider>
-              <validation-provider
-                v-slot="{ errors }"
-                name="E-mail"
-                rules="required"
-              >
-                <label>Senha:</label>
-                <v-text-field style="border: 5px"
-                  v-model="password"
-                  :error-messages="errors"
-                  :append-icon="showPass ? 'mdi-eye' : 'mdi-eye-off'"
-                  @click:append="showPass = !showPass"
-                  required
-                  outlined color="blue"
-                  dense
-                  light
-                  :type="showPass ? 'text' : 'password'"
-                ></v-text-field>
-              </validation-provider>
+          <v-form>
+            <label>Nome de usuário ou e-mail:</label>
+            <v-text-field outlined color="blue" light dense></v-text-field>
+
+            <label>Senha:</label>
+            <v-text-field
+              style="border: 5px"
+              outlined
+              color="blue"
+              dense
+              light
+            ></v-text-field>
+            <router-link class="router" :to="'tarefas'">
               <v-btn class="signin-btn" type="submit" depressed> Entrar </v-btn>
-              <div class="forgot-password">Esqueci minha senha</div>
-            </v-form>
-          </validation-observer>
+            </router-link>
+            <div class="forgot-password">Esqueci minha senha</div>
+          </v-form>
         </div>
       </v-col>
     </v-row>
@@ -57,64 +31,12 @@
 </template>
 
 <script>
-import { required, email } from "vee-validate/dist/rules";
-import {
-  extend,
-  ValidationProvider,
-  setInteractionMode,
-  ValidationObserver,
-} from "vee-validate";
-
-setInteractionMode("eager");
-
-extend("required", {
-  ...required,
-  message: "{_field_} não pode ficar vazio.",
-});
-
-extend("email", {
-  ...email,
-  message: "Digite um e-mail válido.",
-});
-
-export default {
-  components: {
-    ValidationProvider,
-    ValidationObserver,
-  },
-  data: () => ({
-    email: "",
-    password: null,
-    showPass: false,
-  }),
-  computed: {
-    params() {
-      return {
-        email: this.email,
-        password: this.password,
-      };
-    },
-  },
-  methods: {
-    async submit() {
-      const valid = await this.$refs.observer.validate();
-      if (valid) {
-        this.login(this.params); // action to login
-      }
-    },
-    clear() {
-      // you can use this method to clear login form
-      this.email = "";
-      this.password = null;
-      this.$refs.observer.reset();
-    },
-  },
-};
+export default {};
 </script>
 
 <style lang="scss" scoped>
 .section-container {
-  font-family: 'Gilroy-Regular', sans-serif;
+  font-family: "Gilroy-Regular", sans-serif;
   background: #fff;
   width: 100vw;
   height: 100vh;
@@ -148,7 +70,7 @@ export default {
         text-align: left;
         margin: 30px 0;
         font-size: 18px;
-        font-family: 'Gilroy-Bold', sans-serif;
+        font-family: "Gilroy-Bold", sans-serif;
       }
       .signin-btn {
         width: 100%;
@@ -157,7 +79,7 @@ export default {
         padding: 22px 12px;
         font-size: 16px;
         text-transform: none;
-        font-family: 'Gilroy-Bold', sans-serif;
+        font-family: "Gilroy-Bold", sans-serif;
         font-kerning: auto;
       }
       input {
@@ -169,14 +91,19 @@ export default {
         color: #2693ff;
         text-decoration: underline;
         margin-top: 25px;
-        font-family: 'Gilroy-Medium', sans-serif;
+        font-family: "Gilroy-Medium", sans-serif;
+        cursor: pointer;
       }
       label {
         font-size: 14px;
         color: #2d3d4d;
-        font-family: 'Gilroy-Medium', sans-serif;
+        font-family: "Gilroy-Medium", sans-serif;
       }
     }
   }
+}
+
+.router {
+  text-decoration: none !important;
 }
 </style>

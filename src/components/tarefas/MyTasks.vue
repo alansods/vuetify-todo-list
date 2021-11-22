@@ -10,6 +10,12 @@
         >
         pendentes.
       </p>
+      <v-text-field
+            label="Buscar Tarefas"
+            single-line
+            outlined
+            dense
+          ></v-text-field>
       <v-list class="pt-0" flat color="rgba(255, 255, 255, 0)">
         <div v-for="task in tasks" :key="task.id" @click="doneTask(task.id)">
           <v-list-item
@@ -108,11 +114,11 @@ export default {
 <style lang="scss" scoped>
 .container-tasks {
   max-width: 633px;
-  height: 100vh;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0 auto;
+  margin: 30px auto 0 auto;
 }
 
 .container-tasks-flex {
@@ -130,6 +136,7 @@ export default {
   background: white;
   margin: 8px 0;
   border-radius: 5px;
+  cursor: pointer;
 }
 
 .task-list-done {
