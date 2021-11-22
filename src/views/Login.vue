@@ -1,14 +1,14 @@
 <template>
   <section class="section-container">
     <v-row class="signin">
-      <v-col cols="4" class="left">
+      <v-col cols="4" class="left pa-0">
         <v-img
           max-height="180"
           max-width="329"
           src="@/assets/logo.svg"
         ></v-img>
       </v-col>
-      <v-col cols="8" class="right">
+      <v-col cols="8" class="right pa-0">
         <div class="container-form">
           <h2>Entre com seus dados de acesso.</h2>
           <validation-observer ref="observer">
