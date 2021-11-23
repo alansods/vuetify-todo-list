@@ -27,7 +27,7 @@ export default {
 .categorias {
   height: 100%;
   position: fixed;
-  width: 200px;
+  width: 230px;
   left: 100px;
   top: 0px;
   padding: 0 35px;

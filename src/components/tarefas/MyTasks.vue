@@ -118,7 +118,8 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 30px auto 0 auto;
+  margin: 0 auto;
+  height: calc(100vh - 100px);
 }
 
 .container-tasks-flex {

@@ -1,20 +1,14 @@
 <template>
   <v-app>
-    <v-main class="pa-0 full-height">
+    <v-main class="pa-0">
       <router-view></router-view>
-      <AddTask></AddTask>
     </v-main>
   </v-app>
 </template>
 
 <script>
-import AddTask from "@/components/AddTask.vue";
-
 export default {
   name: "App",
-  components: {
-    AddTask,
-  },
 };
 </script>
 

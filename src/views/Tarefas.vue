@@ -1,8 +1,8 @@
 <template>
   <div id="tarefas">
     <TopBar></TopBar>
-    <v-container fluid class="fill-height pa-0">
-      <v-row class="fill-height">
+    <v-container fluid class="pa-0">
+      <v-row>
         <v-col style="z-index: 4" cols="1" class="pa-0">
           <Sidebar></Sidebar>
         </v-col>
@@ -13,16 +13,19 @@
           <MyTasks></MyTasks>
         </v-col>
       </v-row>
+      <AddTask></AddTask>
     </v-container>
   </div>
 </template>
 
 <script>
-import Navbar from "../components/Sidebar.vue";
-import Categories from "../components/Categories.vue";
-import Sidebar from "../components/Sidebar.vue";
-import MyTasks from "../components/tarefas/MyTasks.vue";
-import TopBar from "../components/tarefas/TopBar.vue";
+import Navbar from "@/components/Sidebar.vue";
+import Categories from "@/components/Categories.vue";
+import Sidebar from "@/components/Sidebar.vue";
+import MyTasks from "@/components/tarefas/MyTasks.vue";
+import TopBar from "@/components/tarefas/TopBar.vue";
+import AddTask from "@/components/AddTask.vue";
+
 
 export default {
   name: "Tarefas",
@@ -32,6 +35,7 @@ export default {
     Sidebar,
     MyTasks,
     TopBar,
+    AddTask
   },
 };
 </script>
