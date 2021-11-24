@@ -25,7 +25,7 @@ export default {
   data() {
     return {
       usuario: {
-        nome: "Eduardo Pereira da Costa",
+        nome: "Alan Oliveira Santos",
         cargo: "Front-End Developer",
       },
     };

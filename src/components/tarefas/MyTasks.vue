@@ -69,15 +69,17 @@ export default {
   name: "MyTasks",
   data() {
     return {
-      nome: "Eduardo Pereira",
+      nome: "Alan Santos",
       numeroTarefas: "5",
       newTaskTitle: "",
     };
   },
   methods: {
     addTaskPart2() {
+      if (this.newTaskTitle.length) {
       this.$store.commit('addTask', this.newTaskTitle);
       this.newTaskTitle = "";
+      }
     },
   },
 };
