@@ -104,7 +104,7 @@ export default {
   methods: {
     addTask() {
       let newTask = {
-        id: Date.now(), //gera um número único e diferente de todos.
+        id: Date.now(), //gera um número único e diferente de todos os outros.
         title: this.newTaskTitle,
         done: false
       }
