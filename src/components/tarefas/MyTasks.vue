@@ -11,8 +11,8 @@
       </p>
       <v-text-field
         v-model="newTaskTitle"
-        @click:append="addTask"
-        @keyup.enter="addTask"
+        @click:append="addTaskPart2"
+        @keyup.enter="addTaskPart2"
         class="py-3"
         outlined
         hide-details
@@ -22,7 +22,7 @@
       >
       </v-text-field>
       <v-list class="pt-0" flat color="rgba(255, 255, 255, 0)">
-        <div v-for="task in tasks" :key="task.id" @click="doneTask(task.id)">
+        <div v-for="task in $store.state.tasks" :key="task.id" @click="$store.commit('doneTask', task.id)">
           <v-list-item
             class="task-list"
             :class="{ 'task-list-done': task.done }"
@@ -52,7 +52,7 @@
                   <v-list-item>
                     <v-list-item-title>Editar</v-list-item-title>
                   </v-list-item>
-                  <v-list-item @click="deleteTask(task.id)">
+                  <v-list-item @click="$store.commit('deleteTask', task.id)">
                     <v-list-item-title>Excluir</v-list-item-title>
                   </v-list-item>
                 </v-list>
@@ -72,54 +72,12 @@ export default {
       nome: "Eduardo Pereira",
       numeroTarefas: "5",
       newTaskTitle: "",
-      tasks: [
-        {
-          id: 1,
-          title: "Planejar desenvolvimentode app ToDoList",
-          done: false,
-        },
-        {
-          id: 2,
-          title: "Criar Projeto Vue.js",
-          done: false,
-        },
-        {
-          id: 3,
-          title: "Montar telas HTML/CSS",
-          done: false,
-        },
-        {
-          id: 4,
-          title: "Separar componentes",
-          done: false,
-        },
-        {
-          id: 5,
-          title: "Programar componentes",
-          done: false,
-        },
-      ],
     };
   },
   methods: {
-    addTask() {
-      let newTask = {
-        id: Date.now(), //gera um número único e diferente.
-        title: this.newTaskTitle,
-        done: false
-      }
-      this.tasks.push(newTask);
+    addTaskPart2() {
+      this.$store.commit('addTask', this.newTaskTitle);
       this.newTaskTitle = "";
-    },
-    doneTask(id) {
-      let task = this.tasks.filter((task) => task.id === id)[0]; //na mesma linha nao precisa de chaves e return
-      task.done = !task.done;
-      console.log(`Id: ${task.id}. Done: ${task.done}.`);
-    },
-    deleteTask(id) {
-      this.tasks = this.tasks.filter((task) => {
-        return task.id !== id;
-      });
     },
   },
 };
