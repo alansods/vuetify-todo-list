@@ -3,7 +3,7 @@
     <TopBar></TopBar>
     <v-container fluid class="pa-0">
       <v-row>
-        <v-col style="z-index: 4" cols="1" class="pa-0">
+        <v-col cols="1" class="pa-0">
           <Sidebar></Sidebar>
         </v-col>
         <v-col cols="2" class="pa-0">

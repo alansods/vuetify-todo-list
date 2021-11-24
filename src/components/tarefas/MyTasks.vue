@@ -1,6 +1,5 @@
 <template>
-  <div class="container-tasks">
-    <div class="container-tasks-flex">
+  <div class="container-tasks mt-10">
       <h2>Minhas Tarefas</h2>
       <p>
         Olá <span class="information">{{ nome }}</span
@@ -11,11 +10,17 @@
         pendentes.
       </p>
       <v-text-field
-            label="Buscar Tarefas"
-            single-line
-            outlined
-            dense
-          ></v-text-field>
+        v-model="newTaskTitle"
+        @click:append="addTask"
+        @keyup.enter="addTask"
+        class="py-3"
+        outlined
+        hide-details
+        clearable
+        label="Adicionar tarefa"
+        append-icon="mdi-plus"
+      >
+      </v-text-field>
       <v-list class="pt-0" flat color="rgba(255, 255, 255, 0)">
         <div v-for="task in tasks" :key="task.id" @click="doneTask(task.id)">
           <v-list-item
@@ -56,7 +61,6 @@
           </v-list-item>
         </div>
       </v-list>
-    </div>
   </div>
 </template>
 
@@ -67,6 +71,7 @@ export default {
     return {
       nome: "Eduardo Pereira",
       numeroTarefas: "5",
+      newTaskTitle: "",
       tasks: [
         {
           id: 1,
@@ -97,6 +102,15 @@ export default {
     };
   },
   methods: {
+    addTask() {
+      let newTask = {
+        id: Date.now(),
+        title: this.newTaskTitle,
+        done: false
+      }
+      this.tasks.push(newTask);
+      this.newTaskTitle = "";
+    },
     doneTask(id) {
       let task = this.tasks.filter((task) => task.id === id)[0]; //na mesma linha nao precisa de chaves e return
       task.done = !task.done;
@@ -114,16 +128,8 @@ export default {
 <style lang="scss" scoped>
 .container-tasks {
   max-width: 633px;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   margin: 0 auto;
-  height: calc(100vh - 100px);
-}
 
-.container-tasks-flex {
-  flex: 1;
 }
 
 .information {
@@ -141,7 +147,7 @@ export default {
 }
 
 .task-list-done {
-  background: #F4FAFD;
-  color: #8D9CA9 !important;
+  background: #f4fafd;
+  color: #8d9ca9 !important;
 }
 </style>
