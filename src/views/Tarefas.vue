@@ -13,29 +13,24 @@
           <MyTasks></MyTasks>
         </v-col>
       </v-row>
-      <AddTask></AddTask>
     </v-container>
   </div>
 </template>
 
 <script>
-import Navbar from "@/components/Sidebar.vue";
-import Categories from "@/components/Categories.vue";
-import Sidebar from "@/components/Sidebar.vue";
+import Categories from "@/components/Sidebar/Categories.vue";
+import Sidebar from "@/components/Sidebar/Sidebar.vue";
 import MyTasks from "@/components/tarefas/MyTasks.vue";
 import TopBar from "@/components/tarefas/TopBar.vue";
-import AddTask from "@/components/AddTask.vue";
 
 
 export default {
   name: "Tarefas",
   components: {
-    Navbar,
     Categories,
     Sidebar,
     MyTasks,
     TopBar,
-    AddTask
   },
 };
 </script>

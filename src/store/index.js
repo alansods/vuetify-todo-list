@@ -29,10 +29,13 @@ export default new Vuex.Store({
       },
       {
         id: 5,
-        title: "Programar componentes",
+        title: "Colocar tudo em inglês.",
         done: false,
       },
     ],
+    snackbar: {
+      show: false
+    }
   },
   //methods, but no api
   mutations: {
@@ -54,9 +57,16 @@ export default new Vuex.Store({
         return task.id !== id;
       });
     },
+    showSnackbar(state) {
+      state.snackbar.show = true;
+    }
   },
   //methods, can api
   actions: {
+    addTask({ commit }, newTaskTitle) {
+      commit('addTask', newTaskTitle)
+      commit('showSnackbar')
+    }
   },
   //get data and change it before it goes to components
   getters: {
