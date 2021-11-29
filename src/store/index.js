@@ -10,6 +10,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   //data
   state: {
+    search: null,
     tasks: [
       {
         id: 1,
@@ -63,6 +64,10 @@ export default new Vuex.Store({
         return task.id !== id;
       });
     },
+    updateTaskTitle(state, payload) {
+      let task = state.tasks.filter((task) => task.id === payload.id)[0]
+      task.title = payload.title
+    },
     showSnackbar(state, text) {
       let timeout = 0;
       if (state.snackbar.show) {
@@ -89,6 +94,10 @@ export default new Vuex.Store({
     },
     emptyFieldWarning ({ commit }) {
       commit('showSnackbar', 'O campo está vazio. Digite alguma tarefa!')
+    },
+    updateTaskTitle({ commit }, payload) {
+      commit('updateTaskTitle', payload)
+      commit('showSnackbar', 'Título da tarefa atualizado.')
     }
   },
   //é como computed properties. Pega so as informações q vc quer.
