@@ -10,7 +10,8 @@
           <Categories></Categories>
         </v-col>
         <v-col cols="9" class="pa-0">
-          <MyTasks></MyTasks>
+          <router-view />
+          <!-- <MyTasks></MyTasks> -->
         </v-col>
       </v-row>
     </v-container>
@@ -20,7 +21,7 @@
 <script>
 import Categories from "@/components/Sidebar/Categories.vue";
 import Sidebar from "@/components/Sidebar/Sidebar.vue";
-import MyTasks from "@/components/tarefas/MyTasks.vue";
+// import MyTasks from "@/components/tarefas/MyTasks.vue";
 import TopBar from "@/components/tarefas/TopBar.vue";
 
 
@@ -29,7 +30,7 @@ export default {
   components: {
     Categories,
     Sidebar,
-    MyTasks,
+    // MyTasks,
     TopBar,
   },
 };

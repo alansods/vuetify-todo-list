@@ -1,7 +1,7 @@
 <template>
   <div class="categorias" max-width="300">
     <div>
-      <h3 class="mb-10">Categorias</h3>
+      <router-link class="router" :to="'tarefas/finalizadas'"><h3 class="mb-10">Categorias</h3></router-link>
       <ul v-for="(item, i) in items" :key="i">
         <li><v-icon>mdi-chevron-right</v-icon>{{ item.text }}</li>
       </ul>
