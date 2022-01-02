@@ -18,10 +18,10 @@
 <script>
 import AddTaskField from "@/components/tarefas/AddTaskField.vue";
 import TasksList from "@/components/tarefas/TasksList.vue";
-import Search from './Search.vue';
+// import Search from './Search.vue';
 
 export default {
-  components: { AddTaskField, TasksList, Search },
+  components: { AddTaskField, TasksList },
   name: "MyTasks",
   data() {
     return {
