@@ -1,6 +1,6 @@
 <template>
     <v-snackbar v-model="$store.state.snackbar.show">
-      {{ text }}
+      {{ $store.state.snackbar.text }}
 
       <template v-slot:action="{ attrs }">
         <v-btn color="pink" text v-bind="attrs" @click="$store.state.snackbar.show = false">
@@ -12,9 +12,7 @@
 
 <script>
 export default {
-  data: () => ({
-    text: `Tarefa adicionada.`,
-  }),
+
 };
 </script>
 

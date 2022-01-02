@@ -1,11 +1,16 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+//plugin localbase para localstorage
+import Localbase from 'localbase'
+
+let db = new Localbase('db')
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   //data
   state: {
+    search: null,
     tasks: [
       {
         id: 1,
@@ -34,12 +39,14 @@ export default new Vuex.Store({
       },
     ],
     snackbar: {
-      show: false
+      show: false,
+      text: ''
     }
   },
-  //methods, but no api
+  //methods que alteram os states. So pode alterar os states pela mutation.
+  //Não podem ser chamadas diretamente, são registradas aqui e tem que ser chamada pelas actions.
   mutations: {
-    //o padrao na função da mutation é: function(state, payload). State é o data daqui e o payload é o data que vai ser pegado do componente fora daqui.
+    //o padrao na função da mutation é: function(state, payload). State é o data daqui e o payload é a informação que vai ser pegado do componente fora daqui.
     addTask(state, newTaskTitle) { 
       let newTask = {
         id: Date.now(), //gera um número único e diferente.
@@ -57,18 +64,43 @@ export default new Vuex.Store({
         return task.id !== id;
       });
     },
-    showSnackbar(state) {
-      state.snackbar.show = true;
+    updateTaskTitle(state, payload) {
+      let task = state.tasks.filter((task) => task.id === payload.id)[0]
+      task.title = payload.title
+    },
+    showSnackbar(state, text) {
+      let timeout = 0;
+      if (state.snackbar.show) {
+        state.snackbar.show = false;
+        timeout = 300;
+      }
+      setTimeout(() => {
+        state.snackbar.show = true;
+        state.snackbar.text = text;
+      }, timeout)
     }
   },
-  //methods, can api
+  //methods que chamam as mutations
+  //method('context', payload). Onde context é quase o vuex inteiro, pode pegar quase tudo q tem aqui.
+  //pra chamar action usa dispatch e pra mutation usa commit
   actions: {
     addTask({ commit }, newTaskTitle) {
       commit('addTask', newTaskTitle)
-      commit('showSnackbar')
+      commit('showSnackbar', 'Tarefa adicionada.')
+    },
+    deleteTask({ commit }, id) {
+      commit('deleteTask', id)
+      commit('showSnackbar', 'Tarefa excluída.')
+    },
+    emptyFieldWarning ({ commit }) {
+      commit('showSnackbar', 'O campo está vazio. Digite alguma tarefa!')
+    },
+    updateTaskTitle({ commit }, payload) {
+      commit('updateTaskTitle', payload)
+      commit('showSnackbar', 'Título da tarefa atualizado.')
     }
   },
-  //get data and change it before it goes to components
+  //é como computed properties. Pega so as informações q vc quer.
   getters: {
   },
   //break vuex store in multiple parts

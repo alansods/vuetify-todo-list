@@ -27,7 +27,8 @@ export default {
         this.newTaskTitle = "";
       }
       else {
-        alert("Digite alguma tarefa.");
+        this.$store.dispatch("emptyFieldWarning");
+        //alert("Digite alguma tarefa.");
       }
     },
   },

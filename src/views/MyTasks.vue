@@ -10,6 +10,7 @@
       pendentes.
     </p>
     <AddTaskField></AddTaskField>
+    <!-- <Search></Search> -->
     <TasksList></TasksList>
   </div>
 </template>
@@ -17,9 +18,10 @@
 <script>
 import AddTaskField from "@/components/tarefas/AddTaskField.vue";
 import TasksList from "@/components/tarefas/TasksList.vue";
+import Search from './Search.vue';
 
 export default {
-  components: { AddTaskField, TasksList },
+  components: { AddTaskField, TasksList, Search },
   name: "MyTasks",
   data() {
     return {
