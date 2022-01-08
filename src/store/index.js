@@ -100,7 +100,7 @@ export default new Vuex.Store({
       commit('showSnackbar', 'Título da tarefa atualizado.')
     }
   },
-  //é como computed properties. Pega so as informações q vc quer.
+  //é como computed e watch.
   getters: {
   },
   //break vuex store in multiple parts
