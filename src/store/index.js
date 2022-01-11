@@ -53,7 +53,7 @@ export default new Vuex.Store({
         title: newTaskTitle,
         done: false
       }
-      state.tasks.push(newTask);
+      state.tasks.unshift(newTask);
     },
     doneTask(state, id) {
       let task = state.tasks.filter((task) => task.id === id)[0]; //na mesma linha nao precisa de chaves e return
